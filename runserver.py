@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import controllers
-from controllers import app
+from app import app
 
 
 def run_server():

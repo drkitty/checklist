@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% block stylesheets %}
+  {{ super() }}
+  <link href="/static/checklist.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block body %}
+  <div id="header">
+    <h1>Checklist</h1>
+  </div>
+  <div id="content">
+    <table id="checklist">
+      <tbody>
+        {% for id, done, description in rows %}
+          <tr id="task-{{ id }}">
+            <td>{% if done %}&#x2611;{% else %}&#x2610;{% endif %}</td>
+            <td>{{ description }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

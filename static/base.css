@@ -1,0 +1,9 @@
+body {
+  padding: 10px 60px;
+}
+
+.keep-children-inside::after {
+  content: '';
+  display: block;
+  clear: both;
+}
