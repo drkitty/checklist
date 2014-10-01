@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 
+{% block scripts %}
+<script src="/static/checklist.js"></script>
+{% endblock %}
+
+
 {% block stylesheets %}
   {{ super() }}
   <link href="/static/checklist.css" rel="stylesheet" type="text/css">
@@ -16,8 +21,12 @@
       <tbody>
         {% for id, done, description in rows %}
           <tr id="task-{{ id }}">
-            <td>{% if done %}&#x2611;{% else %}&#x2610;{% endif %}</td>
-            <td>{{ description }}</td>
+            <td class="check">
+              <button class="check css-flat-button">
+                {%- if done %}&#x2611;{% else %}&#x2610;{% endif -%}
+              </button>
+            </td>
+            <td class="description">{{ description }}</td>
           </tr>
         {% endfor %}
       </tbody>

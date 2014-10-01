@@ -1,18 +1,26 @@
 div#header {
-  padding: 10px 0px;
-  margin-bottom: 10px;
-  background: #988;
-  font-size: 20px;
+    padding: 10px 0px;
+    margin-bottom: 10px;
+    background: #988;
+    font-size: 20px;
 }
 
 table#checklist tbody tr:nth-child(odd) {
-  background: #ece;
+    background: #ece;
 }
 
 table#checklist tbody tr:nth-child(even) {
-  background: #cee;
+    background: #cee;
 }
 
 table#checklist td {
-  padding: 5px;
+    padding: 5px;
+}
+
+table#checklist button.check {
+    font-size: 30px;
+}
+
+td.description {
+    vertical-align: middle;
 }

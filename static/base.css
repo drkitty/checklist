@@ -2,8 +2,23 @@ body {
   padding: 10px 60px;
 }
 
-.keep-children-inside::after {
+.css-keep-children-inside::after {
   content: '';
   display: block;
   clear: both;
+}
+
+.css-unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.css-flat-button {
+  padding: 0px;
+  border: none;
+  background: none;
 }
