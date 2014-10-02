@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 
-import settings
+import settings.python as settings
 
 
 app = Flask(__name__)

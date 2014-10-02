@@ -1,0 +1,5 @@
+https://launchpad.net/oursql/py3k/py3k-0.9.4/+download/oursql-0.9.4.tar.gz
+Flask==0.10.1
+Jinja2==2.7.3
+SQLAlchemy==0.9.7
+uWSGI==2.0.7
