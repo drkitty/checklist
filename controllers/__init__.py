@@ -1,1 +1,1 @@
-from .checklist_list import *
+from .checklist import *
