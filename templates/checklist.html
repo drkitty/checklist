@@ -18,16 +18,9 @@
   </div>
   <div id="content">
     <table id="checklist">
-      <tbody>
+      <tbody id="checklist-item-container">
         {% for id, done, description in rows %}
-          <tr id="task-{{ id }}">
-            <td class="check">
-              <button class="check css-flat-button">
-                {%- if done %}&#x2611;{% else %}&#x2610;{% endif -%}
-              </button>
-            </td>
-            <td class="description">{{ description }}</td>
-          </tr>
+          {% include "parts/checklist_item.html" %}
         {% endfor %}
       </tbody>
     </table>

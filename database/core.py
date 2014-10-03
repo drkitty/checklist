@@ -29,8 +29,15 @@ Session = sessionmaker(bind=engine)
 
 def transaction(func):
     def new_func(*args, **kwargs):
-        s = Session()
-        return func(s, *args, **kwargs)
+        try:
+            s = Session()
+            return func(s, *args, **kwargs)
+        except:
+            s.rollback()
+            raise
+        finally:
+            s.commit()
+
     new_func.__name__ = func.__name__
     new_func.__module__ = func.__module__
     new_func.__doc__ = func.__doc__
