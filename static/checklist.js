@@ -16,8 +16,6 @@ function handle(selector, type, f) {
     };
 }
 
-var x = 'nothing yet';
-
 function parse(s) {
     t = document.createElement('template');
     t.innerHTML = s;
@@ -34,11 +32,8 @@ function create_item(description) {
                 console.log('Success!');
                 container = $('#checklist-item-container');
                 item = parse(r.responseText);
-                console.log(item);
                 item = container.insertBefore(item, null);
                 handle_item(item.querySelector('button.check'));
-            } else {
-                console.log('Failure');
             };
         };
     };
@@ -49,11 +44,12 @@ function create_item(description) {
 var handle_item;
 
 document.addEventListener('DOMContentLoaded', function() {
-    handle_item = handle('table#checklist button.check', 'click', function(elem) {
+    handle_item = handle(
+            '#checklist-item-container button.check', 'click', function(elem) {
         var done_text = '\u2611';
         var not_done_text = '\u2610';
 
-        text_node = elem.childNodes[0]
+        text_node = elem.childNodes[0];
 
         if (text_node.nodeValue == done_text) {
             text_node.nodeValue = not_done_text;

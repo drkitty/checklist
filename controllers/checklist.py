@@ -20,11 +20,9 @@ def create_item(session):
     i.description = request.form['description']
     session.add(i)
     session.commit()
-    t = render_template(
+    return render_template(
         'parts/checklist_item.html', id=i.id, done=False,
         description=i.description)
-    print(t)
-    return t
 
 @app.route('/checklist/edit', methods=('POST',))
 @transaction
