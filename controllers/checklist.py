@@ -24,9 +24,20 @@ def create_item(session):
         'parts/checklist_item.html', id=i.id, done=False,
         description=i.description)
 
+
 @app.route('/checklist/edit', methods=('POST',))
 @transaction
 def edit_item(session):
-    i = session.query(Item).filter(id=request.form['id'])
+    i = session.query(Item).filter(Item.id == request.form['id']).first()
     i.description = request.form.get('description', i.description)
     i.done = request.form.get('done', i.done)
+    return '', 204
+
+
+@app.route('/checklist/remove', methods=('POST',))
+@transaction
+def remove_item(session):
+    i = session.query(Item).filter(
+        Item.id == request.form['id']).delete()
+    session.commit()
+    return '', 204

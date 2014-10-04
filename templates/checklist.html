@@ -22,6 +22,16 @@
         {% for id, done, description in rows %}
           {% include "parts/checklist_item.html" %}
         {% endfor %}
+        <tr id="new-item-container">
+          <td />
+          <td>
+            <button id="new-item" class="css-flat-button">+</button>
+          </td>
+          <td class="description">
+            <input type="text" name="description"
+                   placeholder="Description" autocomplete="off"></input>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

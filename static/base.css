@@ -22,3 +22,8 @@ body {
   border: none;
   background: none;
 }
+
+input[type=text] {
+  border: none;
+  background: none;
+}

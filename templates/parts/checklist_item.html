@@ -1,5 +1,10 @@
-<tr id="task-{{ id }}">
-  <td class="check">
+<tr data-item-id="{{ id }}">
+  <td>
+    <button class="remove-item css-flat-button">
+      &#x2A2F;
+    </button>
+  </td>
+  <td>
     <button class="check css-flat-button">
       {%- if done %}&#x2611;{% else %}&#x2610;{% endif -%}
     </button>

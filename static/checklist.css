@@ -1,8 +1,9 @@
 div#header {
-    padding: 10px 0px;
+    padding: 10px 5px;
     margin-bottom: 10px;
     background: #988;
     font-size: 20px;
+    text-align: center;
 }
 
 table#checklist tbody tr:nth-child(odd) {
@@ -17,10 +18,14 @@ table#checklist td {
     padding: 5px;
 }
 
-table#checklist button.check {
+table#checklist td.description {
+    vertical-align: middle;
+}
+
+table#checklist button.remove-item,button.check {
     font-size: 30px;
 }
 
-td.description {
-    vertical-align: middle;
+table#checklist button#new-item {
+    font-size: 30px;
 }
