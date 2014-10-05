@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 from flask import render_template, request
 
 from app import app
@@ -16,6 +18,7 @@ def view_checklist(session):
 @transaction
 def create_item(session):
     i = Item()
+    i.id = uuid4().hex
     i.done = False
     i.description = request.form['description']
     session.add(i)
@@ -28,7 +31,7 @@ def create_item(session):
 @app.route('/edit', methods=('POST',))
 @transaction
 def edit_item(session):
-    i = session.query(Item).filter(Item.id == int(request.form['id'])).first()
+    i = session.query(Item).filter(Item.id == request.form['id']).first()
     i.description = request.form.get('description', i.description)
     if 'done' in request.form:
         i.done = request.form['done'] == 'true'
@@ -39,6 +42,6 @@ def edit_item(session):
 @transaction
 def remove_item(session):
     i = session.query(Item).filter(
-        Item.id == int(request.form['id'])).delete()
+        Item.id == request.form['id']).delete()
     session.commit()
     return '', 204
