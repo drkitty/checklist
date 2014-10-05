@@ -44,7 +44,7 @@ function forEach(collection, f) {
 
 function handle(selector, type, f) {
     handler = function(elem) {
-        elem.addEventListener(type, function() { f(elem); });
+        elem.addEventListener(type, f.bind(elem));
     }
 
     forEach($$(selector), handler);
@@ -133,21 +133,21 @@ var handle_check;
 
 document.addEventListener('DOMContentLoaded', function() {
     handle_remove = handle(
-            'table#checklist button.remove-item', 'click', function(elem) {
-        remove_item($up(elem, 'tr').getAttribute('data-item-id'));
+            'table#checklist button.remove-item', 'click', function() {
+        remove_item($up(this, 'tr').getAttribute('data-item-id'));
     });
 
     handle_check = handle(
-            'table#checklist button.check', 'click', function(elem) {
-        text_node = elem.childNodes[0];
+            'table#checklist button.check', 'click', function() {
+        text_node = this.childNodes[0];
 
         edit_item(
-            $up(elem, 'tr').getAttribute('data-item-id'),
+            $up(this, 'tr').getAttribute('data-item-id'),
             !(text_node.nodeValue === done_text));
 
     });
 
-    handle('button#new-item', 'click', function(elem) {
+    handle('button#new-item', 'click', function() {
         description_input = $('#new-item-container input[name=description]');
         description = description_input.value;
         if (description !== '') {
