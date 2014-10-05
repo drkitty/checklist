@@ -65,7 +65,6 @@ function create_item(description, callback) {
     r.onreadystatechange = function() {
         if (r.readyState == r.DONE) {
             if (r.status == 200) {
-                console.log('Success!');
                 container = $('#checklist-item-container');
                 item = parse(r.responseText);
                 item = container.insertBefore(
@@ -77,7 +76,7 @@ function create_item(description, callback) {
             };
         };
     };
-    r.open('POST', '/checklist/create');
+    r.open('POST', '/create');
     r.send(data);
 }
 
@@ -88,14 +87,13 @@ function remove_item(id, callback) {
     r.onreadystatechange = function() {
         if (r.readyState == r.DONE) {
             if (r.status == 204) {
-                console.log('Success!');
+                $('table#checklist tr[data-item-id="' + id + '"]').remove();
                 if (callback)
                     callback;
-                $('table#checklist tr[data-item-id="' + id + '"]').remove();
             };
         };
     };
-    r.open('POST', '/checklist/remove');
+    r.open('POST', '/remove');
     r.send(data);
 }
 

@@ -5,14 +5,14 @@ from database.core import Session, transaction
 from database.data import Item
 
 
-@app.route('/checklist/all', methods=('GET',))
+@app.route('/all', methods=('GET',))
 @transaction
 def view_checklist(session):
     rows = [(x.id, x.done, x.description) for x in session.query(Item).all()]
     return render_template('checklist.html', rows=rows)
 
 
-@app.route('/checklist/create', methods=('POST',))
+@app.route('/create', methods=('POST',))
 @transaction
 def create_item(session):
     i = Item()
@@ -25,7 +25,7 @@ def create_item(session):
         description=i.description)
 
 
-@app.route('/checklist/edit', methods=('POST',))
+@app.route('/edit', methods=('POST',))
 @transaction
 def edit_item(session):
     i = session.query(Item).filter(Item.id == request.form['id']).first()
@@ -34,7 +34,7 @@ def edit_item(session):
     return '', 204
 
 
-@app.route('/checklist/remove', methods=('POST',))
+@app.route('/remove', methods=('POST',))
 @transaction
 def remove_item(session):
     i = session.query(Item).filter(
