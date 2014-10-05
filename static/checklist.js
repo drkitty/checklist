@@ -133,12 +133,12 @@ var handle_check;
 
 document.addEventListener('DOMContentLoaded', function() {
     handle_remove = handle(
-            'table#checklist button.remove-item', 'click', function() {
+            'table#checklist button.remove-item', 'click', function(e) {
         remove_item($up(this, 'tr').getAttribute('data-item-id'));
     });
 
     handle_check = handle(
-            'table#checklist button.check', 'click', function() {
+            'table#checklist button.check', 'click', function(e) {
         text_node = this.childNodes[0];
 
         edit_item(
@@ -147,13 +147,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
 
-    handle('button#new-item', 'click', function() {
+    handle('button#new-item', 'click', function(e) {
         description_input = $('#new-item-container input[name=description]');
         description = description_input.value;
         if (description !== '') {
             create_item(description, function() {
                 description_input.value = '';
             });
+        };
+    });
+
+    handle('input[name="description"]', 'keyup', function(e) {
+        if (e.keyCode == 0x0D) {
+            description_input = $(
+                '#new-item-container input[name=description]');
+            description = description_input.value;
+            if (description !== '') {
+                create_item(description, function() {
+                    description_input.value = '';
+                });
+            };
         };
     });
 })
