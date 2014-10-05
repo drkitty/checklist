@@ -26,6 +26,10 @@ table#checklist button.remove-item,button.check {
     font-size: 30px;
 }
 
+table#checklist td#remove-item-placeholder {
+    width: 30px;
+}
+
 table#checklist button#new-item {
     font-size: 30px;
 }
