@@ -28,9 +28,10 @@ def create_item(session):
 @app.route('/edit', methods=('POST',))
 @transaction
 def edit_item(session):
-    i = session.query(Item).filter(Item.id == request.form['id']).first()
+    i = session.query(Item).filter(Item.id == int(request.form['id'])).first()
     i.description = request.form.get('description', i.description)
-    i.done = request.form.get('done', i.done)
+    if 'done' in request.form:
+        i.done = request.form['done'] == 'true'
     return '', 204
 
 
@@ -38,6 +39,6 @@ def edit_item(session):
 @transaction
 def remove_item(session):
     i = session.query(Item).filter(
-        Item.id == request.form['id']).delete()
+        Item.id == int(request.form['id'])).delete()
     session.commit()
     return '', 204

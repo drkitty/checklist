@@ -9,7 +9,7 @@ function getMatchesSelector() {
     for (var i = 0; i <= choices.length - 1; ++i) {
         if (choices[i] !== undefined) {
             return function(elem, selector) {
-                return choices[i].bind(elem, selector).call();
+                return choices[i].bind(elem, selector)();
             };
         };
     };
@@ -61,6 +61,7 @@ function parse(s) {
 function create_item(description, callback) {
     data = new FormData();
     data.append('description', description);
+
     r = new XMLHttpRequest();
     r.onreadystatechange = function() {
         if (r.readyState == r.DONE) {
@@ -80,9 +81,39 @@ function create_item(description, callback) {
     r.send(data);
 }
 
+var done_text = '\u2611';
+var not_done_text = '\u2610';
+
+function edit_item(id, done, callback) {
+    data = new FormData();
+    data.append('id', id);
+    data.append('done', done);
+
+    r = new XMLHttpRequest();
+    r.onreadystatechange = function() {
+        if (r.readyState == r.DONE) {
+            if (r.status == 204) {
+                text_node = $(
+                    'table#checklist tr[data-item-id="' + id +
+                    '"] button.check').childNodes[0];
+                if (done)
+                    text_node.nodeValue = done_text;
+                else
+                    text_node.nodeValue = not_done_text;
+
+                if (callback)
+                    callback();
+            };
+        };
+    };
+    r.open('POST', '/edit');
+    r.send(data);
+}
+
 function remove_item(id, callback) {
     data = new FormData();
     data.append('id', id);
+
     r = new XMLHttpRequest();
     r.onreadystatechange = function() {
         if (r.readyState == r.DONE) {
@@ -108,16 +139,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     handle_check = handle(
             'table#checklist button.check', 'click', function(elem) {
-        var done_text = '\u2611';
-        var not_done_text = '\u2610';
-
         text_node = elem.childNodes[0];
 
-        if (text_node.nodeValue == done_text) {
-            text_node.nodeValue = not_done_text;
-        } else {
-            text_node.nodeValue = done_text;
-        };
+        edit_item(
+            $up(elem, 'tr').getAttribute('data-item-id'),
+            !(text_node.nodeValue === done_text));
+
     });
 
     handle('button#new-item', 'click', function(elem) {
