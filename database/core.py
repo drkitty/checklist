@@ -10,7 +10,7 @@ def utf8mb4_connect(**kwargs):
     connection = oursql.Connection(
         host=settings.database['host'], user=settings.database['user'],
         db=settings.database['db'], passwd=settings.database['passwd'],
-        **kwargs)
+        autoreconnect=True, **kwargs)
     cursor = connection.cursor()
     cursor.execute("SET NAMES 'utf8mb4' COLLATE 'utf8mb4_bin'")
     return connection
