@@ -23,7 +23,21 @@ body {
   background: none;
 }
 
-input[type=text] {
+input[type="text"],input[type="password"] {
   border: none;
   background: none;
 }
+
+button {
+  border: none;
+  background: none;
+}
+
+div#header {
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    background: #988;
+    font-size: 20px;
+    text-align: center;
+}
+

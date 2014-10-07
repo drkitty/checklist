@@ -1,0 +1,30 @@
+input[type="text"],input[type="password"] {
+  border: 1px solid black;
+}
+
+li {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+div.css-left {
+  float: left;
+  text-align: right;
+  height: 100%;
+  vertical-align: middle;
+  width: 30%; /* fallback */
+  width: calc(40% - 30px);
+}
+
+div.css-right {
+  float: right;
+  width: 60%;
+}
+
+div.row {
+  height: 40px;
+}
+
+button[type="submit"] {
+  background: #844;
+}

@@ -1,5 +1,8 @@
+hash_rounds = 20000
+
 app_config = {
     'debug': True,
+    'secret_key': '',
 }
 
 database = {

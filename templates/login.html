@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block stylesheets %}
+  {{ super() }}
+  <link href="/static/login.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block body %}
+  <div id="header">
+    <h1>Log in</h1>
+  </div>
+  <div id="content" class="keep-children-inside">
+    <form method="POST">
+      <div class="css-keep-children-inside row">
+        <div class="css-left"><label for="name">Username</label></div>
+        <div class="css-right"><input type="text" name="username"></div>
+      </div>
+      <div class="css-keep-children-inside row">
+        <div class="css-left"><label for="password">Password</label></div>
+        <div class="css-right"><input type="password" name="password"></div>
+      </div>
+      <div>
+        <div class="css-right">
+          <button type="submit">Log in</button>
+          <button id="create-account">Create account</button>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}
