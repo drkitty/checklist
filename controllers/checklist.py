@@ -19,6 +19,11 @@ def require_auth(func):
     return new_func
 
 
+@app.route('/')
+def root():
+    return redirect('/all')
+
+
 @app.route('/login', methods=('GET', 'POST'))
 @transaction
 def login(s):
