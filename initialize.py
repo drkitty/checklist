@@ -18,7 +18,7 @@ if __name__ == '__main__':
     try:
         cur.execute('DROP DATABASE {}'.format(settings.database['db']))
     except oursql.ProgrammingError as e:
-        if e.errno != 1008:  # "Can't drop database {}; database doesn't exit"
+        if e.errno != 1008:  # "Can't drop database {}; database doesn't exist"
             raise
     cur.execute(
         'CREATE DATABASE {} CHARACTER SET utf8mb4 COLLATE utf8mb4_bin'.format(

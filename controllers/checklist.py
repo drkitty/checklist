@@ -36,6 +36,7 @@ def login(s):
             return 'There is no user with that username and password', 403
         else:
             session['username'] = request.form['username']
+            session.permanent = True
             return redirect('/all')
 
 
