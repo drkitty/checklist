@@ -11,7 +11,7 @@ import settings.python as settings
 class Item(Base):
     __tablename__ = 'item'
 
-    id = Column(String(32), primary_key=True)
+    id = Column(String(16 + 1 + 32), primary_key=True)
     done = Column(Boolean)
     description = Column(Text)
 

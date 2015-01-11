@@ -1,3 +1,4 @@
+import time
 from uuid import uuid4
 
 from flask import redirect, render_template, request, session
@@ -53,7 +54,7 @@ def view_checklist(s):
 @transaction
 def create_item(s):
     i = Item()
-    i.id = uuid4().hex
+    i.id = '{:0>16x}-{}'.format(int(time.time()), uuid4().hex)
     i.done = False
     i.description = request.form['description']
     s.add(i)
